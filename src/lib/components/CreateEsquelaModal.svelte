@@ -108,7 +108,7 @@
   async function cargarEstudiantesPorCurso(cursoId: number) {
     try {
       const response = await apiClient.get(`/courses/${cursoId}/students?page=1&page_size=1000`);
-      console.log('📦 Response completo:', response);
+      console.log('Response completo:', response);
       
       // Extraer estudiantes según el formato de respuesta
       let estudiantesData = [];
