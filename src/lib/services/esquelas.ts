@@ -9,8 +9,8 @@ import { http } from './http';
 
 export const esquelasService = {
 	// CRUD Esquelas
-	getEsquelas: async (params?: Record<string, any>): Promise<any> => http.get(`/esquelas/${http.buildQuery(params)}`),
-	createEsquela: async (esquela: EsquelaCreate): Promise<EsquelaResponse> => http.post('/esquelas/', esquela),
+	getEsquelas: async (params?: Record<string, any>): Promise<any> => http.get(`/esquelas${http.buildQuery(params)}`),
+	createEsquela: async (esquela: EsquelaCreate): Promise<EsquelaResponse> => http.post('/esquelas', esquela),
 	getEsquela: async (id: number): Promise<EsquelaResponse> => http.get(`/esquelas/${id}`),
 	deleteEsquela: async (id: number): Promise<string> => http.del(`/esquelas/${id}`),
 

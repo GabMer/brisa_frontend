@@ -78,7 +78,7 @@
 
 	function userIsAdmin(user: any): boolean {
 		return Boolean(user?.roles?.some((role: any) => 
-			role?.nombre === 'Administrativo' || role?.nombre === 'Administrador'
+			role?.nombre === 'Administrativo' || role?.nombre === 'Administrador' || role?.nombre === 'Director'
 		));
 	}
 
