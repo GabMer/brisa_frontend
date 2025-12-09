@@ -1,0 +1,315 @@
+:global(*) {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :global(html, body) {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  :global(body) {
+    position: relative;
+  }
+
+  .login-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    min-height: -webkit-fill-available;
+    background: linear-gradient(135deg, #0f4c75 0%, #3282b8 50%, #1ba098 100%);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 1rem 2rem 1rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  @supports (min-height: 100dvh) {
+    .login-page {
+      min-height: 100dvh;
+      height: 100dvh;
+    }
+  }
+
+  .login-container {
+    width: 100%;
+    max-width: 550px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    margin: 0 auto;
+    padding-top: 150px;
+  }
+
+  .header-section {
+    text-align: center;
+    color: white;
+    position: relative;
+  }
+
+  .logo-circle {
+    width: clamp(90px, 20vw, 140px);
+    height: clamp(90px, 20vw, 140px);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
+  }
+
+  .logo-circle svg {
+    width: clamp(50px, 11vw, 75px);
+    height: clamp(50px, 11vw, 75px);
+    flex-shrink: 0;
+    transform: scale(1.1);
+  }
+
+  .sistema-title {
+    font-size: clamp(24px, 5vw, 36px);
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: 0.5px;
+  }
+
+  .colegio-title {
+    font-size: clamp(14px, 3vw, 20px);
+    font-weight: 400;
+    margin: 0;
+    opacity: 0.95;
+  }
+
+  .login-card {
+    background: white;
+    border-radius: clamp(18px, 3vw, 24px);
+    padding: clamp(28px, 5vw, 50px) clamp(20px, 6vw, 55px);
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .card-header {
+    margin-bottom: clamp(28px, 4vw, 35px);
+  }
+
+  .card-header h3 {
+    font-size: clamp(20px, 4vw, 26px);
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .card-header p {
+    font-size: clamp(13px, 2.5vw, 15px);
+    color: #7f8c8d;
+    margin: 0;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 3vw, 24px);
+  }
+
+  .error-banner {
+    background: #fee;
+    border: 1px solid #fcc;
+    color: #c33;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  label {
+    font-size: clamp(14px, 2.5vw, 15px);
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .input-icon {
+    position: absolute;
+    left: clamp(14px, 2.5vw, 18px);
+    color: #95a5a6;
+    pointer-events: none;
+    width: 20px;
+    height: 20px;
+  }
+
+  input {
+    width: 100%;
+    padding: clamp(14px, 2.5vw, 18px) clamp(14px, 2.5vw, 18px) clamp(14px, 2.5vw, 18px) clamp(46px, 8vw, 52px);
+    border: 2px solid #e8ecef;
+    border-radius: clamp(10px, 2vw, 12px);
+    font-size: clamp(15px, 2.5vw, 16px);
+    color: #2c3e50;
+    transition: all 0.2s;
+    font-family: inherit;
+    background: #f8f9fa;
+  }
+
+  input::placeholder {
+    color: #95a5a6;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: #3282b8;
+    background: white;
+  }
+
+  input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .forgot-password {
+    text-align: right;
+    font-size: clamp(13px, 2.5vw, 15px);
+    color: #3282b8;
+    margin-top: -10px;
+    transition: color 0.2s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    align-self: flex-end;
+  }
+
+  .forgot-password:hover {
+    color: #1ba098;
+    text-decoration: underline;
+  }
+
+  .btn-login {
+    width: 100%;
+    padding: clamp(15px, 3vw, 20px);
+    background: #1ba098;
+    color: white;
+    border: none;
+    border-radius: clamp(10px, 2vw, 12px);
+    font-size: clamp(15px, 3vw, 18px);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+    box-shadow: 0 4px 12px rgba(27, 160, 152, 0.3);
+  }
+
+  .btn-login:hover:not(:disabled) {
+    background: #189a8d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(27, 160, 152, 0.4);
+  }
+
+  .btn-login:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  .btn-login:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .help-button {
+    position: fixed;
+    bottom: clamp(16px, 3vw, 30px);
+    right: clamp(16px, 3vw, 30px);
+    width: clamp(44px, 8vw, 50px);
+    height: clamp(44px, 8vw, 50px);
+    background: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: clamp(20px, 4vw, 24px);
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .help-button:hover {
+    background: #34495e;
+    transform: scale(1.1);
+  }
+
+  /* Breakpoints específicos para ajustes finos */
+  @media (max-width: 380px) {
+    .login-page {
+      padding: 1rem 0.75rem;
+    }
+
+    .login-container {
+      gap: 1.5rem;
+    }
+
+    .login-card {
+      padding: 24px 16px;
+    }
+  }
+
+  @media (min-width: 640px) and (max-width: 1024px) {
+    .login-container {
+      max-width: 480px;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .login-container {
+      max-width: 550px;
+    }
+
+    .login-page {
+      padding: 3rem 2rem;
+    }
+  }
+
+  @media (max-height: 700px) and (orientation: portrait) {
+    .login-page {
+      padding: 1.5rem 1rem;
+    }
+
+    .login-container {
+      gap: 1.5rem;
+    }
+
+    .logo-circle {
+      margin-bottom: 1rem;
+    }
+  }

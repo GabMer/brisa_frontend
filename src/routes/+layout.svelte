@@ -34,6 +34,16 @@
 	];
 
 	const reportesSubmenu = [
+
+		{
+			label: 'Usuarios y Roles', 
+			icon: 'users', 
+			items: [
+				{ label: 'Listado de Usuarios', href: '/Usuarios y Roles' },
+				
+			]
+		},
+
 		{ 
 			label: 'Estudiantes',
 			icon: 'graduation-cap',

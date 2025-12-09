@@ -1,0 +1,314 @@
+ .permissions-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 0;
+  }
+
+  .filters-section {
+    padding: 20px 24px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    flex-shrink: 0;
+  }
+
+  .filters-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 14px 0;
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 400px;
+  }
+
+  .filter-input {
+    padding: 9px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.2s;
+    background: white;
+  }
+
+  .filter-input:focus {
+    outline: none;
+    border-color: #06b6d4;
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+  }
+
+  .content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 24px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    flex-shrink: 0;
+  }
+
+  .header-info {
+    flex: 1;
+  }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 4px 0;
+  }
+
+  .section-subtitle {
+    font-size: 13px;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  .table-wrapper {
+    flex: 1;
+    overflow: auto;
+    background: white;
+    min-height: 0;
+  }
+
+  .table-wrapper::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .table-wrapper::-webkit-scrollbar-track {
+    background: #f9fafb;
+  }
+
+  .table-wrapper::-webkit-scrollbar-thumb {
+    background: #cbd5e0;
+    border-radius: 5px;
+  }
+
+  .permissions-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+  }
+
+  thead {
+    background: #f9fafb;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  th {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: #4b5563;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    border-bottom: 2px solid #e5e7eb;
+  }
+
+  .col-icon {
+    width: 50px;
+  }
+
+  .col-permiso {
+    width: 20%;
+  }
+
+  .col-descripcion {
+    width: 55%;
+  }
+
+  .col-acciones {
+    width: 140px;
+    text-align: center;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid #f3f4f6;
+    transition: background 0.2s;
+  }
+
+  tbody tr:hover {
+    background: #f9fafb;
+  }
+
+  td {
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #1f2937;
+  }
+
+  .icon-cell {
+    padding: 12px 16px;
+  }
+
+  .permission-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* 🎨 LECTURA - Cyan claro */
+  .permission-icon.lectura {
+    background: #cffafe;
+  }
+
+  .permission-icon.lectura svg {
+    color: #0e7490;
+  }
+
+  /* 🎨 AGREGAR - Sky azul */
+  .permission-icon.agregar {
+    background: #bae6fd;
+  }
+
+  .permission-icon.agregar svg {
+    color: #0369a1;
+  }
+
+  /* 🎨 MODIFICAR - Blue azul medio */
+  .permission-icon.modificar {
+    background: #dbeafe;
+  }
+
+  .permission-icon.modificar svg {
+    color: #1e40af;
+  }
+
+  /* 🎨 ELIMINAR - Slate con toque celeste */
+  .permission-icon.eliminar {
+    background: #f1f5f9;
+  }
+
+  .permission-icon.eliminar svg {
+    color: #475569;
+  }
+
+  .permission-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .permission-cell {
+    font-weight: 500;
+  }
+
+  .permission-name {
+    font-weight: 600;
+    color: #1f2937;
+    font-size: 14px;
+  }
+
+  .description-cell {
+    color: #6b7280;
+  }
+
+  .permission-description {
+    color: #6b7280;
+    line-height: 1.6;
+    font-size: 14px;
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn-accion {
+    padding: 7px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-accion svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* 🎨 BOTÓN VER DETALLES - Cyan */
+  .btn-ver {
+    background: #cffafe;
+    color: #0e7490;
+  }
+
+  .btn-ver:hover {
+    background: #a5f3fc;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(6, 182, 212, 0.3);
+  }
+
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    background: white;
+  }
+
+  .empty-state svg {
+    width: 64px;
+    height: 64px;
+    color: #d1d5db;
+    margin-bottom: 16px;
+  }
+
+  .empty-state p {
+    font-size: 16px;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .filters-section,
+    .content-header {
+      padding: 16px;
+    }
+
+    .permissions-table {
+      min-width: 600px;
+    }
+
+    th,
+    td {
+      padding: 12px;
+      font-size: 13px;
+    }
+
+    .btn-accion {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+
+    .permission-icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .permission-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+  }

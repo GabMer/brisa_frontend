@@ -1,0 +1,245 @@
+.logs-container {
+    padding: 8px 0;
+  }
+
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 24px;
+    background: #f9fafb;
+    border-radius: 8px;
+    border: 2px dashed #e5e7eb;
+  }
+
+  .empty-icon {
+    width: 64px;
+    height: 64px;
+    color: #d1d5db;
+    margin-bottom: 16px;
+  }
+
+  .empty-text {
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 0 8px 0;
+  }
+
+  .empty-hint {
+    color: #9ca3af;
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .logs-timeline {
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .logs-timeline::before {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #e5e7eb, #f3f4f6);
+  }
+
+  .log-item {
+    position: relative;
+    margin-bottom: 24px;
+  }
+
+  .log-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .log-marker {
+    position: absolute;
+    left: -40px;
+    top: 0;
+  }
+
+  .marker-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 3px solid;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .marker-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .marker-login {
+    border-color: #10b981;
+    color: #10b981;
+  }
+
+  .marker-logout {
+    border-color: #f59e0b;
+    color: #f59e0b;
+  }
+
+  .marker-create {
+    border-color: #3b82f6;
+    color: #3b82f6;
+  }
+
+  .marker-edit {
+    border-color: #8b5cf6;
+    color: #8b5cf6;
+  }
+
+  .marker-delete {
+    border-color: #ef4444;
+    color: #ef4444;
+  }
+  
+  .marker-error {
+    border-color: #ef4444;
+    color: #ef4444;
+  }
+
+  .marker-default {
+    border-color: #6b7280;
+    color: #6b7280;
+  }
+
+  .log-content {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.2s;
+  }
+
+  .log-content:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  .log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .log-main-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+  }
+
+  .log-action {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+  }
+
+  .status-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .status-success {
+    background: #d1fae5;
+    color: #065f46;
+  }
+
+  .status-error {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+
+  .status-blocked {
+    background: #fef3c7;
+    color: #92400e;
+  }
+
+  .status-default {
+    background: #f3f4f6;
+    color: #6b7280;
+  }
+
+  .log-time {
+    font-size: 12px;
+    color: #9ca3af;
+    white-space: nowrap;
+  }
+
+  .log-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .detail-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .detail-icon {
+    width: 16px;
+    height: 16px;
+    color: #9ca3af;
+    flex-shrink: 0;
+  }
+
+  .detail-text {
+    font-size: 13px;
+    color: #6b7280;
+  }
+
+  .detail-text strong {
+    color: #1f2937;
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .logs-timeline {
+      padding-left: 32px;
+    }
+
+    .logs-timeline::before {
+      left: 15px;
+    }
+
+    .log-marker {
+      left: -32px;
+    }
+
+    .marker-icon {
+      width: 32px;
+      height: 32px;
+      border-width: 2px;
+    }
+
+    .marker-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .log-header {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
