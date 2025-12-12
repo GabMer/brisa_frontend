@@ -71,11 +71,11 @@
   async function cargarListas() {
     try {
       // Cargar cursos según el rol:
-      // - Profesor/Regente: solo sus cursos asignados usando /courses/mis_cursos/{id_usuario}
-      // - Administrativo: todos los cursos usando /courses/
+      // - Profesor: solo sus cursos asignados usando /courses/mis_cursos/{id_usuario}
+      // - Regente/Administrativo: todos los cursos usando /courses/
       let cursosData;
       
-      if (isProfesor || isRegente) {
+      if (isProfesor) {
         // Obtener id_usuario del usuario actual (asignador)
         const idUsuario = currentUser?.id_usuario;
         
@@ -87,7 +87,7 @@
         
         cursosData = await apiClient.getCourseTeachersList(idUsuario);
       } else {
-        // Administrativo: todos los cursos
+        // Regente/Administrativo: todos los cursos
         cursosData = await apiClient.getCourses();
       }
       
