@@ -115,12 +115,15 @@
 
   async function cargarListas() {
     try {
-      // Cargar cursos según el rol
+      // Cargar cursos según el rol:
+      // - Profesor: solo sus cursos asignados usando /courses/mis_cursos/{id_usuario}
+      // - Regente/Administrativo: todos los cursos usando /courses/
       let cursosData;
-
-      if (isProfesor || isRegente) {
-        const idUsuario = currentUser?.id_usuario || currentUser?.usuario_id;
-
+      
+      if (isProfesor) {
+        // Obtener id_usuario del usuario actual (asignador)
+        const idUsuario = currentUser?.id_usuario;
+        
         if (!idUsuario) {
           error = "No se pudo obtener la información del usuario.";
           console.error("❌ id_usuario no disponible:", currentUser);
@@ -129,6 +132,7 @@
 
         cursosData = await apiClient.getCourseTeachersList(idUsuario);
       } else {
+        // Regente/Administrativo: todos los cursos
         cursosData = await apiClient.getCourses();
       }
 
@@ -137,7 +141,13 @@
       // Para Regente y Administrativo, cargar lista de profesores
       if (!isProfesor) {
         const profesoresData = await apiClient.getProfesores();
-        profesores = profesoresData;
+        // Construir nombre_completo si no existe
+        profesores = profesoresData.map((prof: any) => {
+          if (!prof.nombre_completo && prof.nombres) {
+            prof.nombre_completo = `${prof.nombres} ${prof.apellido_paterno || ''} ${prof.apellido_materno || ''}`.trim();
+          }
+          return prof;
+        });
       }
     } catch (err: any) {
       console.error("Error cargando listas:", err);
@@ -230,8 +240,7 @@
   function seleccionarProfesor(profesor: Profesor) {
     profesorSeleccionado = profesor;
     idProfesor = profesor.id_persona;
-    searchProfesor =
-      `${profesor.nombres} ${profesor.apellido_paterno || ""} ${profesor.apellido_materno || ""}`.trim();
+    searchProfesor = profesor.nombre_completo;
     showProfesorDropdown = false;
   }
 

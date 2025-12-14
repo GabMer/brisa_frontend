@@ -8,6 +8,7 @@ import { personalService } from './personal';
 import { academicService } from './academic';
 import { esquelasService } from './esquelas';
 import { authService } from './Usuarios_Roles/auth';
+import { administrativosService } from './administrativos';
 import { http } from './http';
 
 // ==================== API CLIENT UNIFICADO ====================
@@ -46,6 +47,7 @@ export const apiClient = {
 	...personalService,
 	...academicService,
 	...esquelasService,
+	...administrativosService,
 
 	// ==================== MÉTODOS HTTP GENÉRICOS ====================
 	// Passthroughs para compatibilidad con código que usa apiClient.get(...)
@@ -80,7 +82,8 @@ export {
 	coursesService,
 	personalService,
 	academicService,
-	esquelasService
+	esquelasService,
+	administrativosService
 };
 
 /**
