@@ -96,7 +96,13 @@
       // Para Regente y Administrativo, cargar lista de profesores
       if (!isProfesor) {
         const profesoresData = await apiClient.getProfesores();
-        profesores = profesoresData;
+        // Construir nombre_completo si no existe
+        profesores = profesoresData.map((prof: any) => {
+          if (!prof.nombre_completo && prof.nombres) {
+            prof.nombre_completo = `${prof.nombres} ${prof.apellido_paterno || ''} ${prof.apellido_materno || ''}`.trim();
+          }
+          return prof;
+        });
       }
     } catch (err: any) {
       console.error('Error cargando listas:', err);
@@ -196,7 +202,7 @@
   function seleccionarProfesor(profesor: Profesor) {
     profesorSeleccionado = profesor;
     idProfesor = profesor.id_persona;
-    searchProfesor = `${profesor.nombres} ${profesor.apellido_paterno || ''} ${profesor.apellido_materno || ''}`.trim();
+    searchProfesor = profesor.nombre_completo;
     showProfesorDropdown = false;
   }
 

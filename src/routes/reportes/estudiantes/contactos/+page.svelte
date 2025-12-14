@@ -9,16 +9,13 @@
 	let error: string | null = null;
 	let reporte: ContactosApoderadosResponseDTO | null = null;
 
+	// Cursos disponibles
+	let cursos: any[] = [];
+
 	// Filtros
-	let cursoId: number | undefined = undefined;
+	let cursoId: number | null = null;
 	let nivel: 'inicial' | 'primaria' | 'secundaria' | '' = '';
 	let gestion: string = '';
-
-	type ContactoResumido = {
-		tipo: TipoApoderado;
-		nombre: string;
-		telefono: string;
-	};
 
 	type ContactosPorEstudiante = {
 		id_estudiante: number;
@@ -84,8 +81,18 @@
 		}
 	}
 
+	async function cargarCursos() {
+		try {
+			const cursosData = await apiClient.getCourses();
+			cursos = Array.isArray(cursosData) ? cursosData : [];
+		} catch (err: any) {
+			console.error('Error cargando cursos:', err);
+			cursos = [];
+		}
+	}
+
 	function limpiarFiltros() {
-		cursoId = undefined;
+		cursoId = null;
 		nivel = '';
 		gestion = '';
 		expandedByStudentId = {};
@@ -132,6 +139,7 @@
 	}
 
 	onMount(() => {
+		cargarCursos();
 		cargarReporte();
 	});
 </script>
@@ -145,13 +153,18 @@
 	<div class="filtros-section">
 		<div class="filtros-grid">
 			<div class="form-group">
-				<label for="curso">Curso (ID)</label>
-				<input 
-					type="number" 
+				<label for="curso">Curso</label>
+				<select 
 					id="curso"
 					bind:value={cursoId}
-					placeholder="Ej: 5"
-				/>
+				>
+					<option value={undefined}>-- Todos los cursos --</option>
+					{#each cursos as curso}
+						<option value={curso.id_curso}>
+							{curso.nombre_curso || `${curso.grado}° ${curso.paralelo}`}
+						</option>
+					{/each}
+				</select>
 			</div>
 
 			<div class="form-group">
@@ -240,7 +253,6 @@
 											on:click={() => toggleExpanded(item.id_estudiante)}
 										>
 											<span class="estudiante-nombre">{item.estudiante_nombre}</span>
-											<span class="estudiante-id">ID: {item.id_estudiante}</span>
 										</button>
 									</td>
 									<td>{item.estudiante_ci}</td>
