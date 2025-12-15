@@ -1,4 +1,4 @@
-<!--src/routes.+layout.svelte-->
+<!-- src/routes/+layout.svelte -->
 
 <script lang="ts">
 	import "../app.css";
@@ -8,6 +8,7 @@
 	import { page } from "$app/stores";
 	import { goto } from "$app/navigation";
 	import { authStore } from "$lib/stores/Usuarios_Roles/auth.svelte";
+	import { personasStore } from "$lib/stores/Usuarios_Roles/personas.svelte";
 	import { getIconSvg } from "$lib/components/svg.js";
 	import type { ModuloSistema } from "$lib/types/Usuarios_Roles/auth";
 	import LogoutDialog from "./LogoutDialog.svelte";
@@ -19,6 +20,20 @@
 	const isAuthenticated = $derived(authStore.isAuthenticated);
 	const currentUser = $derived(authStore.user);
 	const canManageCodigos = $derived(authStore.esAdministrador);
+	
+	// ✅ FIX: Obtener la persona actual del usuario logueado
+	const currentPersona = $derived(
+		currentUser && personasStore.personas.length > 0
+			? personasStore.personas.find(p => p.usuario === currentUser.usuario)
+			: null
+	);
+	
+	// ✅ FIX: Derivar el rol del usuario con fallback correcto
+	const userRole = $derived(
+		currentPersona?.tipo_persona 
+			? (currentPersona.tipo_persona === 'profesor' ? 'Profesor' : 'Administrativo')
+			: (currentUser?.rol || 'Usuario')
+	);
 
 	// Usar la store $page para obtener la ruta actual reactivamente
 	const currentPath = $derived($page.url.pathname);
@@ -123,6 +138,17 @@
 		if (currentPath !== "/login" && !authStore.isAuthenticated) {
 			goto("/login");
 		}
+		
+		// ✅ Cargar información de personas si está autenticado
+		if (authStore.isAuthenticated && authStore.user) {
+			try {
+				console.log('📋 Cargando información de personas...');
+				await personasStore.loadPersonas();
+				console.log('✅ Personas cargadas:', personasStore.personas.length);
+			} catch (error) {
+				console.error("❌ Error cargando información de personas:", error);
+			}
+		}
 	});
 
 	function handleLogout() {
@@ -137,17 +163,6 @@
 
 	function cancelLogout() {
 		showLogoutDialog = false;
-	}
-
-	function userIsAdmin(user: any): boolean {
-		return Boolean(
-			user?.roles?.some(
-				(role: any) =>
-					role?.nombre === "Administrativo" ||
-					role?.nombre === "Administrador" ||
-					role?.nombre === "Director",
-			),
-		);
 	}
 
 	function toggleSidebar() {
@@ -313,15 +328,14 @@
 					</button>
 					<button class="user-profile" onclick={goToProfile}>
 						<div class="avatar">
-							{currentUser?.nombres?.[0] || "U"}{currentUser
-								?.usuario?.[0] || ""}
+							{currentUser?.nombres?.[0] || "U"}{currentUser?.usuario?.[0] || ""}
 						</div>
 						<div class="user-info">
 							<span class="user-name">
 								{currentUser?.nombres || "Usuario"}
 							</span>
 							<span class="user-role">
-								{currentUser?.rol || "Rol"}
+								{userRole}
 							</span>
 						</div>
 					</button>
